@@ -1,6 +1,9 @@
+import Project from "../Project";
+import displayProjects from "./displayProjects";
+
 export {addProjectBtn, addProjectModal};
 
-function addProjectBtn(projectList) {
+function addProjectBtn() {
     const button = document.createElement('button');
     const modal = document.querySelector('#addProjectModal');
     button.textContent = 'Add Project';
@@ -40,8 +43,10 @@ function addProjectModal(projectList) {
         e.preventDefault();
         const fd = new FormData(modalForm);
         const fdObj = Object.fromEntries(fd);
-        console.log(fdObj);
-        projectList.addProject(23, fdObj.name);
+        projectList.addProject(new Project(projectList.list.length, fdObj.name));
+        displayProjects(projectList);
+        console.log(projectList.list)
+        projectModal.close();
     })
     modalForm.appendChild(projectModalSubmit);
 

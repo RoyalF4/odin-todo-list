@@ -17,18 +17,25 @@ function createElements() {
 
 function initialPageLoad(projectList) {
     body.appendChild(addProjectModal(projectList));
+
     const sidebar = document.createElement('div');
-    const sidebarHeading = document.createElement('h2');
-
-    sidebarHeading.textContent = 'Projects';
     sidebar.classList.add('sidebar');
-    sidebar.appendChild(sidebarHeading);
-    sidebar.appendChild(displayProjects(projectList));
-    sidebar.appendChild(addProjectBtn(projectList));
 
+    const sidebarHeading = document.createElement('h2');
+    sidebarHeading.textContent = 'Projects';
+    sidebar.appendChild(sidebarHeading);
+
+    const projectsContainer = document.createElement('div');
+    projectsContainer.classList.add('projects-container');
+    sidebar.appendChild(projectsContainer);
+
+    sidebar.appendChild(addProjectBtn());
 
 
     body.appendChild(sidebar);
+
+    // Load projects in sidebar
+    displayProjects(projectList);
     
 }
 
