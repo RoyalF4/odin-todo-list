@@ -16,7 +16,7 @@ function createElements() {
 }
 
 function initialPageLoad(projectList) {
-    body.appendChild(addProjectModal());
+    body.appendChild(addProjectModal(projectList));
     const sidebar = document.createElement('div');
     const sidebarHeading = document.createElement('h2');
 
