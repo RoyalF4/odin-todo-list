@@ -8,7 +8,7 @@ const body = document.querySelector('body');
 function initialPageLoad(projectList) {
     body.appendChild(addProjectModal(projectList));
 
-    body.appendChild(addSingleInputModal('renameModal', 'renameSubmit', 'name', 'Enter new project name...'));
+    // body.appendChild(addSingleInputModal('renameModal', 'renameSubmit', 'name', 'Enter new project name...'));
 
     const sidebar = document.createElement('div');
     sidebar.classList.add('sidebar');
