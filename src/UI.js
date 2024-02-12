@@ -1,11 +1,14 @@
 export {initialPageLoad};
 import {addProjectBtn, addProjectModal} from "./modules/addProject";
 import displayProjects from "./modules/displayProjects";
+import { addSingleInputModal } from "./createDOM";
 
 const body = document.querySelector('body');
 
 function initialPageLoad(projectList) {
     body.appendChild(addProjectModal(projectList));
+
+    body.appendChild(addSingleInputModal('renameModal', 'renameSubmit', 'name', 'Enter new project name...'));
 
     const sidebar = document.createElement('div');
     sidebar.classList.add('sidebar');

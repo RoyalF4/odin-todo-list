@@ -24,15 +24,19 @@ class Project {
         return this._list.length;
     }
 
-    set index(index) {
-        this._index = index;
-    }
-
     get list() {
         return this._list;
     }
 
     get name() {
         return this._name;
+    }
+
+    set index(index) {
+        this._index = index;
+    }
+
+    set name(name) {
+        this._name = name;
     }
 }

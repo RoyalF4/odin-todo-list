@@ -40,8 +40,9 @@ function displayProjects(projectList) {
         dropDownBtn.addEventListener('click', ()=> {
             dropDownOptions.classList.add('visible');
         })
+        // close drop down if button loses focus
         dropDownBtn.addEventListener('blur', () => {
-            dropDownOptions.classList.remove('visible');
+            setTimeout(() => dropDownOptions.classList.remove('visible'), 200)
         })
         dropDown.appendChild(dropDownBtn);
         // create dropdown options
@@ -49,13 +50,28 @@ function displayProjects(projectList) {
         dropDownOptions.classList.add('dropDownContent');
         dropDownOptions.classList.add('hidden');
         const dropDownArr = ['Rename', 'Delete'];
-        for(let i = 0; i < 2; i++) {
+        for(let j = 0; j < 2; j++) {
             const dropDownOption = document.createElement('button');
-            dropDownOption.addEventListener('click', () => {
+            dropDownOption.dataset.index = i;
+            dropDownOption.addEventListener('click', (e) => {
+                if(dropDownArr[j] == 'Rename') {
+                    const modal = document.querySelector('#renameModal');
+                    const modalForm = document.querySelector('#renameModalForm');
+                    modal.showModal();
+                    modalForm.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        const fd = new FormData(modalForm);
+                        const fdObj = Object.fromEntries(fd);
+                        projectList.list[i].name = fdObj.name;
+                        displayProjects(projectList);
+                        const contentHeader = document.querySelector('.content-header');
+                        contentHeader.textContent = projectList.list[i].name;
+                        modal.close();
+                    })
+                }
                 dropDownOptions.classList.remove('visible');
-                dropDownOptions.classList.add('hidden');
             })
-            dropDownOption.textContent = dropDownArr[i];
+            dropDownOption.textContent = dropDownArr[j];
             dropDownOptions.appendChild(dropDownOption);
         }
         dropDown.appendChild(dropDownOptions);
