@@ -4,17 +4,6 @@ import displayProjects from "./modules/displayProjects";
 
 const body = document.querySelector('body');
 
-function createElements() {
-
-    function createButton(text) {
-        const button = docuement.createElement('button');
-        button.textContent = text;
-        return button;
-    };
-
-    return {creatButton};
-}
-
 function initialPageLoad(projectList) {
     body.appendChild(addProjectModal(projectList));
 
@@ -26,13 +15,24 @@ function initialPageLoad(projectList) {
     sidebar.appendChild(sidebarHeading);
 
     const projectsContainer = document.createElement('div');
-    projectsContainer.classList.add('projects-container');
+    projectsContainer.classList.add('project-container');
     sidebar.appendChild(projectsContainer);
 
     sidebar.appendChild(addProjectBtn());
 
+    // Create content container
+    const content = document.createElement('div');
+    content.classList.add('content');
+
+    // Create content project header
+    const contentHeader = document.createElement('h1');
+    contentHeader.classList.add('content-header');
+    contentHeader.textContent = 'Default';
+    content.appendChild(contentHeader);
+
 
     body.appendChild(sidebar);
+    body.appendChild(content);
 
     // Load projects in sidebar
     displayProjects(projectList);

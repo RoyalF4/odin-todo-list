@@ -20,6 +20,10 @@ class Project {
         return this._index;
     }
 
+    get length() {
+        return this._list.length;
+    }
+
     set index(index) {
         this._index = index;
     }
